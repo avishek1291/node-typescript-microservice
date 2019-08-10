@@ -10,10 +10,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const express = require("express");
 const bodyparser = require("body-parser");
+const mongoose = require("mongoose");
+const bluebird = require("bluebird");
 class App {
     constructor() {
         this.app = express();
-        this.setExpressConfig();
+        this.db = this.setExpressConfig();
     }
     setExpressConfig() {
         return __awaiter(this, void 0, void 0, function* () {
@@ -22,6 +24,17 @@ class App {
             this.app.use(express.static('public'));
             const { router } = yield Promise.resolve().then(() => require('../routes'));
             this.app.use('/api/v1', router);
+        });
+    }
+    connectdb() {
+        return __awaiter(this, void 0, void 0, function* () {
+            mongoose.Promise = bluebird;
+            mongoose.connection.on('error', () => {
+                console.log('error in database connection');
+                process.exit(1);
+            });
+            yield mongoose.connect('url', { useMongoClient: true });
+            return mongoose.connection.db;
         });
     }
 }
