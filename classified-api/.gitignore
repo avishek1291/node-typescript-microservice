@@ -1,2 +1,34 @@
-/node_modules,
-/dist
+package-lock.json
+
+# Environment variables
+.env
+.env.local
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Dependency directories
+node_modules
+# build folder
+dist
+# Optional npm cache directory
+.npm
+
+# sessions
+sessions
+
+# prettierrc file
+./.prettierrc
+
+# zsh Files
+.zshrc
+
+.DS_Store
+
+*.sqlite
+
+uploads
+
+TODO.md
