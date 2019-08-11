@@ -1,1 +1,1 @@
-export * from './classified.controller';
+export * from './user.controller';

@@ -1,7 +1,7 @@
 import { Router } from 'express';
-import classifiedRoute from './classified.route';
+import userRoute from './user.route';
 const router =  Router();
 
-router.use('/classified', classifiedRoute);
+router.use('/classified', userRoute);
 
 export { router } ;

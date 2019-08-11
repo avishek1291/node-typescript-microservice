@@ -15,7 +15,7 @@ const bluebird = require("bluebird");
 class App {
     constructor() {
         this.app = express();
-        this.db = this.setExpressConfig();
+        this.setExpressConfig();
     }
     setExpressConfig() {
         return __awaiter(this, void 0, void 0, function* () {

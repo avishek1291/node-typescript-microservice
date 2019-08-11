@@ -27,8 +27,8 @@ const userSchema: Schema  = new Schema({
     address_line_2: {type: String, unique: false },
     user_name: {type: String, unique: true },
     password_encrpt: {type: String, unique: true },
-    isActive: {type: Boolean, unique: true }
+    isActive: {type: Boolean }
 
 })
 
-export default mongoose.model<Iuser>('userSchema', userSchema);
+export default mongoose.model<Iuser>('user', userSchema);

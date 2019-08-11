@@ -13,7 +13,7 @@ const userSchema = new mongoose_1.Schema({
     address_line_2: { type: String, unique: false },
     user_name: { type: String, unique: true },
     password_encrpt: { type: String, unique: true },
-    isActive: { type: Boolean, unique: true }
+    isActive: { type: Boolean }
 });
-exports.default = mongoose.model('userSchema', userSchema);
+exports.default = mongoose.model('user', userSchema);
 //# sourceMappingURL=user.model.js.map
