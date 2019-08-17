@@ -16,6 +16,7 @@ class App {
     constructor() {
         this.app = express();
         this.setExpressConfig();
+        this.connectdb();
     }
     setExpressConfig() {
         return __awaiter(this, void 0, void 0, function* () {
@@ -29,11 +30,13 @@ class App {
     connectdb() {
         return __awaiter(this, void 0, void 0, function* () {
             mongoose.Promise = bluebird;
-            mongoose.connection.on('error', () => {
-                console.log('error in database connection');
+            mongoose.connection.on('error', (error) => {
+                console.log('error in database connection', error);
                 process.exit(1);
             });
-            yield mongoose.connect('url', { useMongoClient: true });
+            // mongodb://<dbuser>:<dbpassword>@ds163867.mlab.com:63867/classifieds
+            const result = yield mongoose.connect(`mongodb://avipoc:avipoc1291@ds163867.mlab.com:63867/classifieds`, { useNewUrlParser: true });
+            console.log('connection result: ', result);
             return mongoose.connection.db;
         });
     }

@@ -17,16 +17,15 @@ export interface Iuser extends Document{
 
 const userSchema: Schema  = new Schema({
 
-    id: {type: Number, unique: true },
-    first_name: {type: String, unique: false },
-    last_name: {type: String, unique: false },
-    phone_number: {type: Number, unique: false },
-    city_code: {type: Number, unique: false },
-    country_code: {type: Number, unique: false },
-    address_line_1: {type: String, unique: false },
-    address_line_2: {type: String, unique: false },
-    user_name: {type: String, unique: true },
-    password_encrpt: {type: String, unique: true },
+    first_name: {type: String },
+    last_name: {type: String },
+    phone_number: {type: Number },
+    city_code: {type: Number },
+    country_code: {type: Number },
+    address_line_1: {type: String },
+    address_line_2: {type: String },
+    //user_name: {type: String, unique: true },
+    password_encrpt: {type: String },
     isActive: {type: Boolean }
 
 })

@@ -10,6 +10,8 @@ class App {
      this.app = express();
 
      this.setExpressConfig();
+
+     this.connectdb();
     }
 
     private async setExpressConfig(){
@@ -23,12 +25,13 @@ class App {
 
     private async connectdb(){
         mongoose.Promise = bluebird;
-        mongoose.connection.on('error', () => {
-            console.log('error in database connection');
+        mongoose.connection.on('error', (error) => {
+            console.log('error in database connection', error);
             process.exit(1);
         })
-
-        await mongoose.connect('url', { useMongoClient: true});
+// mongodb://<dbuser>:<dbpassword>@ds163867.mlab.com:63867/classifieds
+        const result = await mongoose.connect(`mongodb://avipoc:avipoc1291@ds163867.mlab.com:63867/classifieds`, { useNewUrlParser: true });
+        console.log('connection result: ', result);
         return mongoose.connection.db;
     }
 }
