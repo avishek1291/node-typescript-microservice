@@ -14,5 +14,11 @@ export class UserRequestMapper {
 
    // };
   }
+
+  getAllpostResponse(dbResponse){
+    return {
+      
+    }
+  }
 }
 export const userRequestMapper = new UserRequestMapper();

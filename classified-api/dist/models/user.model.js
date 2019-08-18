@@ -10,7 +10,6 @@ const userSchema = new mongoose_1.Schema({
     country_code: { type: Number },
     address_line_1: { type: String },
     address_line_2: { type: String },
-    //user_name: {type: String, unique: true },
     password_encrpt: { type: String },
     isActive: { type: Boolean }
 });

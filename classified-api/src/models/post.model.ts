@@ -2,7 +2,6 @@ import * as mongoose from 'mongoose';
 import  { Schema, Document } from 'mongoose';
 
 export interface iPost extends  Document{
-   id: number,
    post_title: string,
    post_img_url: string,
    post_details: string,
@@ -21,7 +20,7 @@ export interface iPost extends  Document{
 }
 
 const postSchema : Schema  = new Schema({
-    "id": {type: Number},
+    
     "post_title": {type: String},
     "post_img_url": {type: String},
     "post_details": {type: String},

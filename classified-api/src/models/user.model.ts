@@ -2,7 +2,7 @@ import * as mongoose from 'mongoose';
 import  { Schema, Document } from 'mongoose';
 
 export interface Iuser extends Document{
- id: number,
+ //     id: number,
  first_name: string,
  last_name: string,
  phone_number: string,
@@ -10,7 +10,6 @@ export interface Iuser extends Document{
  country_code: number,
  address_line_1: string,
  address_line_2: string,
- user_name: string,
  password_encrpt: string,
  isActive: boolean
 }
@@ -24,7 +23,6 @@ const userSchema: Schema  = new Schema({
     country_code: {type: Number },
     address_line_1: {type: String },
     address_line_2: {type: String },
-    //user_name: {type: String, unique: true },
     password_encrpt: {type: String },
     isActive: {type: Boolean }
 
