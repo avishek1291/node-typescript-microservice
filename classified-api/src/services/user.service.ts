@@ -1,5 +1,6 @@
 import UserModel from "../models/user.model";
 import { userRequestMapper } from "../utilities/userRequestMapper";
+import negotiationModel from '../models/negotiation.model';
 export class UserService {
    userSignUp = async userPayload => {
     console.log("inside classified service", userPayload);
@@ -18,5 +19,14 @@ export class UserService {
     const response = await User.save();
     return response;
   };
+  getAllusers = async () => {
+    const allUsers =  await UserModel.find({});
+    return allUsers;
+  }
+
+  postNegotiationMessage = async (payload) =>{
+    const negotiation = new negotiationModel(payload);
+    return await negotiation.save();
+  }
 }
 export const userService = new UserService();

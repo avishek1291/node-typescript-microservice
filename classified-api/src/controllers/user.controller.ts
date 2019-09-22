@@ -19,6 +19,16 @@ public async signUp(req: Request, res: Response, next: NextFunction){
 
 }
 
+public async getAllUsers(req: Request, res: Response, next: NextFunction){
+    try{
+        const users =  await userService.getAllusers();
+        return res.json(users).status(OK);
+    }
+    catch(e){
+        next(e)
+    }
+}
+
 }
 
 export const userController =  new UserController()

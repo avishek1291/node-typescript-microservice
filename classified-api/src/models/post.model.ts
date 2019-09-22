@@ -31,11 +31,11 @@ const postSchema : Schema  = new Schema({
     "is_seller": {type:Boolean},
     "is_individual": {type:Boolean},
     "posted_by": { type: Schema.Types.ObjectId, ref: 'User'},
-    "interest_shown": [ 
-       { "shown_by": { type: Schema.Types.ObjectId, ref: 'User' }, "chats": [{type: Schema.Types.ObjectId, ref: 'Conversation'}]}
+    "negotiations": [ 
+       { type: Schema.Types.ObjectId, ref: 'Negotiations'}
     ],
     "is_price_negotiable": {type:Boolean},
     "expected_price": String,
 }) 
 
-export default mongoose.model<iPost>('post', postSchema);
+export default mongoose.model<iPost>('Post', postSchema);

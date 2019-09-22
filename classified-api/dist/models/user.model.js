@@ -13,5 +13,5 @@ const userSchema = new mongoose_1.Schema({
     password_encrpt: { type: String },
     isActive: { type: Boolean }
 });
-exports.default = mongoose.model('User', userSchema);
+exports.default = mongoose.model("User", userSchema);
 //# sourceMappingURL=user.model.js.map
