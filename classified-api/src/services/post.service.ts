@@ -52,7 +52,7 @@ export class PostService {
     } else {
       console.log('setting reply', {...rest})
          return await negotiationModel.findOneAndUpdate(
-        { postId: payload.postId },
+        { _id: payload.negotiationId },
         {'body.reply': payload.body.reply, isReplied: true},
         { sort: {'lastUpdated': -1}, new: true }
       );
