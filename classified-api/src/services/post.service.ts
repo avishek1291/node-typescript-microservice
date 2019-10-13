@@ -40,7 +40,7 @@ export class PostService {
 
   createOrUpdateNegotiatePost = async payload => {
     const { isFirstContact, ...rest } = payload;
-    if (isFirstContact) {
+    // if (isFirstContact) {
       // create the negotiation
       console.log("is first contact", {...rest });
       const negotiation = new negotiationModel({ ...rest });
@@ -49,14 +49,34 @@ export class PostService {
         { $push: { negotiations: negotiation } }
       );
       return await negotiation.save();
-    } else {
-      console.log('setting reply', {...rest})
-         return await negotiationModel.findOneAndUpdate(
-        { _id: payload.negotiationId },
-        {'body.reply': payload.body.reply, isReplied: true},
-        { sort: {'lastUpdated': -1}, new: true }
-      );
-    }
+    // } else {
+    //   console.log('setting reply', {...rest})
+    //      let result = await negotiationModel.findOneAndUpdate(
+    //     { _id: payload.negotiationId, isReplied: false},
+    //     {'body.reply': payload.body.message, isReplied: true},
+    //     { sort: {'lastUpdated': -1}, new: true }
+    //   );
+    //     if(result === null){
+    //       console.log('result is null')
+    //     result = new negotiationModel({ ...rest });
+    //       await PostModel.update(
+    //         { _id: payload.postId },
+    //         { $push: { negotiations: result } }
+    //       );
+    //       return await result.save();
+    //     }
+    //   return result
+    // }
   };
+
+  getUserNegotiationsAll = async (userId) => {
+    const userNegotiations =  await negotiationModel.find({ 'body.from': userId}).populate('postId')
+    return userNegotiations;
+  }
+
+  getNegotiationByUserForPost = async(from, postId, to) => {
+    const result =  await negotiationModel.find({postId, $or:[{ 'body.from':from, 'body.to':to }, { 'body.to':from, 'body.from':to }]});
+    return result;
+  }
 }
 export const postService = new PostService();

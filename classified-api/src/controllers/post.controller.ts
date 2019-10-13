@@ -24,7 +24,7 @@ public async createPost(req: Request, res: Response, next: NextFunction){
     try{
         console.log('request body', req.body)
         const response = await postService.createPost(req.body);
-        res.json('hi').status(OK);
+        res.json(response).status(OK);
     }   
     catch(e){
         next(e)
@@ -76,6 +76,32 @@ public async negotiatePost(req: Request, res: Response, next: NextFunction){
         // if its not first contact then update the resply field of lastest message by time
 
         return res.json(negotiateMessage).status(OK);
+    }
+    catch(e){
+        next(e)
+    }
+}
+
+public async getUserNegotiations(req: Request, res: Response, next: NextFunction){
+    try{
+        const { userId } = req.params;
+
+        const negotiationList =  await postService.getUserNegotiationsAll(userId);
+    
+        return res.json(negotiationList).status(OK);
+    }
+    catch(e){
+        next(e)
+    }
+}
+
+public async getNegotiationUseToPost(req: Request, res: Response, next: NextFunction){
+    try{
+        const { from, postId, to } = req.body;
+
+        const negotiationList =  await postService.getNegotiationByUserForPost(from,postId, to);
+    
+        return res.json(negotiationList).status(OK);
     }
     catch(e){
         next(e)

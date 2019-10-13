@@ -37,6 +37,7 @@ class App {
         //     },
         //     stream: process.stdout
         // }));
+        this.app.use(morgan('dev'))
         this.app.use(bodyparser.json());
         this.app.use(bodyparser.urlencoded({extended : true}));
         this.app.use(express.static('public'));
@@ -47,6 +48,7 @@ class App {
 
     private async connectdb(){
         mongoose.Promise = bluebird;
+        mongoose.set('debug', true);
         mongoose.connection.on('error', (error) => {
             console.log('error in database connection', error);
             process.exit(1);
