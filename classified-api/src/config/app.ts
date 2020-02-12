@@ -54,7 +54,7 @@ class App {
             process.exit(1);
         })
 // mongodb://<dbuser>:<dbpassword>@ds163867.mlab.com:63867/classifieds
-        const connection = await mongoose.connect(`mongodb://avishek.cl.dev:Mustane%402019@ds133077.mlab.com:33077/classifieds`, { useNewUrlParser: true });
+        const connection = await mongoose.connect(`mongodb+srv://medAppUser:medApp123@cluster0-b0rjo.mongodb.net/test?retryWrites=true&w=majority`, { useNewUrlParser: true });
         this.autoIncrement = AutoIncrementFactory(connection);
        //  console.log('connection result: ', connection);
         return mongoose.connection.db;
